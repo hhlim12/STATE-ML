@@ -1,9 +1,0 @@
-LICENSE
-README.md
-setup.py
-stateml/__init__.py
-stateml.egg-info/PKG-INFO
-stateml.egg-info/SOURCES.txt
-stateml.egg-info/dependency_links.txt
-stateml.egg-info/not-zip-safe
-stateml.egg-info/top_level.txt
