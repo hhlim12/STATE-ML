@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: stateml
+Version: 0.1
+Summary: Regression tools
+Home-page: https://github.com/hhlim12/STATE-ML.git
+Author: Morikawa Laboratory
+Author-email: harry@cp.prec.eng.osaka-u.ac.jp
+License: MIT
+License-File: LICENSE
