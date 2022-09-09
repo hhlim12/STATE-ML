@@ -73,3 +73,21 @@ class GP:
         self.kernel.lscale = opt_params.x[1]
         nll = self.get_nll(params=opt_params.x)
         self.nll = nll
+
+class Util:
+    def __init__():
+        pass
+    
+    def plot_func(X_true, t_true, X_train, t_train, X_test, t_test):
+        plt.plot(X_true, t_true, label='true')
+        plt.scatter(X_train, t_train, c = 'r', label='train')
+        plt.plot(X_test, t_test, c = 'g', label='predict')
+        plt.legend()
+        plt.show()
+        
+    def calc_mae(X_test, t_test):
+        t_true = func(X_test)
+        sqerror = np.abs(t_true-t_test)
+        mae = np.mean(sqerror)
+    
+        return (mae)
