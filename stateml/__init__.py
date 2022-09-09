@@ -1,6 +1,7 @@
 import numpy as np
 from numpy.linalg import inv, det
 from scipy.optimize import minimize
+import matplotlib.pyplot as plt
 
 class Kernel:
     "Class for kernel"
@@ -38,15 +39,15 @@ class GP:
         for x_test in X_test:
             # Calc kvec
             kvec = np.zeros(N)
-            for i, x_train in enumerate(X_train):
+            for i, x_train in enumerate(self.X_train):
                 kvec[i] = self.kernel(x_train, x_test)
         
-            c = kernel(x_test, x_test) + self.noise
+            c = self.kernel(x_test, x_test) + self.noise
             C = K + self.noise*np.eye(N, N)
             
             self.C = C
 
-            mu_tests.append(kvec.T @ inv(C) @ t_train)
+            mu_tests.append(kvec.T @ inv(C) @ self.t_train)
             cov_tests.append(c - kvec.T @ inv(C) @ kvec)
             
         self.mu_tests = np.array(mu_tests)
@@ -60,7 +61,7 @@ class GP:
         self.kernel = Kernel(sigma_f = params[0], lscale = params[1])
         K    = self.calc_K()
         C    = K + self.noise*np.eye(N, N)
-        nll  = 0.5*np.log(det(C)) + 0.5*t_train.T@inv(C)@t_train  + 0.5*N*np.log(2*np.pi)
+        nll  = 0.5*np.log(det(C)) + 0.5*self.t_train.T@inv(C)@self.t_train  + 0.5*N*np.log(2*np.pi)
         
         self.nll = nll
         
@@ -85,8 +86,7 @@ class Util:
         plt.legend()
         plt.show()
         
-    def calc_mae(X_test, t_test):
-        t_true = func(X_test)
+    def calc_mae(X_test, t_test, t_true):
         sqerror = np.abs(t_true-t_test)
         mae = np.mean(sqerror)
     

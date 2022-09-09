@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import stateml
+from stateml import Kernel, GP, Util
 
 def func(X):
     #y = np.sin(X) + X
@@ -23,7 +23,7 @@ gp     = GP(X_train, t_train, kernel, noise)
 gp.optimize_params()
 t_test, cov_tests = gp.predict_func(X_test)
 nll = gp.get_nll()
-mae = Helper.calc_mae(X_test, t_test)
+mae = Util.calc_mae(X_test, t_test, func(X_test))
 print ("sigma_f: ", gp.kernel.sigma_f)
 print ("lkernel: ", gp.kernel.lscale)
 print ("nll: ", nll)
