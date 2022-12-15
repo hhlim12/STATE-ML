@@ -1,2 +1,4 @@
 # STATE-ML
-Naive implementation of Gaussian Process as described in Bishop PRML
+
+Naive implementation of GPR as described in Bishop PRML.
+
